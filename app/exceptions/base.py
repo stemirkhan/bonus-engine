@@ -1,0 +1,2 @@
+class BonusCalculationBaseError(Exception):
+    pass

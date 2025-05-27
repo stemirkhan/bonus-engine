@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: bonus-api
+    env_file:
+      - .env.dev
+    environment:
+      - ENVIRONMENT=dev
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo
+      - init-mongo
+    restart: always
+
+  mongo:
+    image: mongo:7
+    container_name: bonus-mongo
+    env_file:
+      - .env.dev
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: always
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh --quiet || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  init-mongo:
+    image: python:3.11-slim
+    container_name: mongo-init-script
+    env_file:
+      - .env.dev
+    volumes:
+      - ./init_demo_dataset.py:/init_demo_dataset.py:ro
+    depends_on:
+      mongo:
+        condition: service_healthy
+    entrypoint: ["sh", "-c", "pip install pymongo python-dotenv && python /init_demo_dataset.py"]
+    restart: "no"
+
+volumes:
+  mongo_data:
