@@ -1,5 +1,5 @@
 from app.domain.conditions.condition_context import ConditionContext
-from app.exceptions import BaseRuleTypeRequiredError, ModifierRuleTypeRequiredError
+from app.exceptions import BaseRuleTypeRequiredError
 from app.interfaces.strategy_interface import StrategyI
 from app.domain.rule.rule import Rule
 

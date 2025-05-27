@@ -5,8 +5,8 @@ from pydantic_settings import BaseSettings
 
 
 class BaseConfig(BaseSettings):
-    PROJECT_NAME: str = "My FastAPI Service"
-    VERSION: str = "1.0.0"
+    PROJECT_NAME: str = "Bonus Service"
+    VERSION: str = "0.0.1"
     DEBUG: bool = False
     MONGO_URI: str
     MONGO_DB_NAME: str = "bonus"
@@ -20,6 +20,7 @@ class DevConfig(BaseConfig):
 
     class Config:
         env_file = ".env.dev"
+        extra = "allow"
 
 
 class TestConfig(BaseConfig):

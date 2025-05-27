@@ -1,7 +1,7 @@
 [project]
-name = "bonus-work"
-version = "0.1.0"
-description = "Add your description here"
+name = "bonus-engine"
+version = "0.0.1"
+description = ""
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -10,6 +10,5 @@ dependencies = [
     "psycopg2-binary>=2.9.10",
     "pydantic-settings>=2.9.1",
     "python-dotenv>=1.1.0",
-    "requests>=2.32.3",
     "uvicorn>=0.34.2",
 ]
