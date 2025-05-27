@@ -7,7 +7,6 @@ load_dotenv()
 
 mongo_uri = os.getenv("MONGO_URI")
 mongo_db_name = os.getenv("MONGO_DB_NAME", "bonus")
-print(mongo_uri)
 
 client = MongoClient(mongo_uri)
 db = client[mongo_db_name]
@@ -37,7 +36,7 @@ base_rate_rule = {
 base_rate_id = rules_collection.insert_one(base_rate_rule).inserted_id
 
 weekend_holiday_bonus_rule = {
-    "code": "holiday_weekend",
+    "code": "holiday_bonus",
     "name": "x2 бонусов в выходные и праздники",
     "description": "В выходные и праздники начисляется x2 бонусов",
     "type": "modifier",
